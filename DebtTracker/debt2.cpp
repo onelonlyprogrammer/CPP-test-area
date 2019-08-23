@@ -12,6 +12,9 @@ class Debt{
 	std::string name;
 	double amount;
 
+	Debt(std::string name1, double amount1){name = name1; amount = amount1;}
+	Debt(){name = ""; amount = 0;}
+
 	Debt convertToDebt(std::string str);
 	//Sets up cout for Debt class
 	friend std::ostream& operator << (std::ostream& out, const Debt& d){
@@ -22,12 +25,11 @@ class Debt{
 
 //Converts string in proper format to Debt object
 Debt Debt::convertToDebt(std::string str){
-	Debt debt;
-	
+
 	std::vector<std::string> tokens;
 	boost::split(tokens, str, boost::is_any_of(","));
 
-	debt.name = tokens[0], debt.amount = atof(tokens[1].c_str());
+	Debt debt(tokens[0], atof(tokens[1].c_str()));
 	return debt;
 }
 
@@ -74,6 +76,7 @@ void retrieve(std::string request, std::vector<Debt> dList){
 }
 int main(){
 	readFile();
+	std::string all = "ALL";
 	while (true){
 		cout << "input command: ";
 		cin >> command;
@@ -81,10 +84,21 @@ int main(){
 			Debt debt1;
 			cout << "input name" << endl;
 			cin >> debt1.name;
-			cout << "input amount" << endl;
-			cin >> debt1.amount;
-			debtl->push_back(debt1);
-			writeFile();
+			std::string upper;
+			if (debt1.name.length() == 3){
+				for (std::string::size_type i = 0; i < debt1.name.length(); ++i){
+					upper += std::toupper(debt1.name[i]);
+				}
+			}
+			if (upper == all){
+				cout << "all is not a valid name." << endl;
+			}
+			else{
+				cout << "input amount" << endl;
+				cin >> debt1.amount;
+				debtl->push_back(debt1);
+				writeFile();
+			}
 		}
 		else if (command == 2){
 			std::string request;
