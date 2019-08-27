@@ -1,11 +1,13 @@
 #include <iostream>
-#include "boost/algorithm/string.hpp"
+#include "../spire/spire.h"
 #include <stdlib.h>
 #include <fstream>
 #include <vector>
 using std::cout;
 using std::cin;
 using std::endl;
+
+Spire spire;
 
 class Debt{
 	public:
@@ -18,7 +20,7 @@ class Debt{
 	Debt convertToDebt(std::string str);
 	//Sets up cout for Debt class
 	friend std::ostream& operator << (std::ostream& out, const Debt& d){
-		out << d.name << ", " << d.amount;
+		out << d.name << ", $" << d.amount;
 		return out;
 	}
 };
@@ -26,8 +28,7 @@ class Debt{
 //Converts string in proper format to Debt object
 Debt Debt::convertToDebt(std::string str){
 
-	std::vector<std::string> tokens;
-	boost::split(tokens, str, boost::is_any_of(","));
+	std::vector<std::string> tokens = spire.split(str, ',');
 
 	Debt debt(tokens[0], atof(tokens[1].c_str()));
 	return debt;
@@ -78,11 +79,11 @@ int main(){
 	readFile();
 	std::string all = "ALL";
 	while (true){
-		cout << "input command: ";
+		cout << "input command | 1: new debt | 2: retrieve debt | 3: delete debt" << endl;
 		cin >> command;
 		if (command == 1){
 			Debt debt1;
-			cout << "input name" << endl;
+			cout << "input name: ";
 			cin >> debt1.name;
 			std::string upper;
 			if (debt1.name.length() == 3){
@@ -94,7 +95,7 @@ int main(){
 				cout << "all is not a valid name." << endl;
 			}
 			else{
-				cout << "input amount" << endl;
+				cout << "input amount: ";
 				cin >> debt1.amount;
 				debtl->push_back(debt1);
 				writeFile();
@@ -102,7 +103,7 @@ int main(){
 		}
 		else if (command == 2){
 			std::string request;
-			cout << "input name of debter: ";
+			cout << "input name of debter (type all to print whole list): ";
 			cin >> request;
 			retrieve(request, debtList);
 		}
