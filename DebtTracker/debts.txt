@@ -1,2 +1,4 @@
-test, 10
-teest, 20
+test,10
+teest,20
+lester,30
+randy,9
