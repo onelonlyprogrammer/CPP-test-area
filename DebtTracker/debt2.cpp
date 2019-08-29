@@ -23,7 +23,6 @@ class Debt {
         name = "";
         amount = 0;
     }
-
     Debt convertToDebt(std::string str);
     //Sets up cout for Debt class
     friend std::ostream& operator<<(std::ostream& out, const Debt& d) {
@@ -36,7 +35,7 @@ std::vector<Debt>* debtl = &debtList;
 
 //Converts string in proper format to Debt object
 Debt Debt::convertToDebt(std::string str) {
-    std::vector<std::string> tokens = zyther.split_one(str, ',');
+    std::vector<std::string> tokens = zyther.split_multi(str, ", $");
 
     Debt debt(tokens[0], atof(tokens[1].c_str()));
     return debt;
@@ -59,8 +58,9 @@ void readFile() {
             debtl->push_back(debt2);
         }
         file.close();
-    } else
-        cout << "file read error";
+    }
+	else
+        cout << "File does not exist. please make now file my making new debt" << endl;
 }
 //Finds request and prints any occurrence of the string
 void retrieve(std::string request, std::vector<Debt> dList) {
@@ -71,19 +71,21 @@ void retrieve(std::string request, std::vector<Debt> dList) {
             if (!found) {
                 found = true;
             }
-        } else if (d.name.find(request) != std::string::npos) {
+        }
+		else if (d.name.find(request) != std::string::npos) {
             cout << d << endl;
             found = true;
         }
     }
-    if (!found) cout << "cannot find " << request << endl;
+    if (!found) cout << "Cannot find " << request << endl;
 }
 int main() {
     readFile();
     std::string all = "ALL";
     while (true) {
-        cout << "input command | 1: new debt | 2: retrieve debt | 3: delete debt" << endl;
+        cout << "Input command | 0: exit | 1: New debt | 2: Retrieve debt | 3: Delete debt" << endl;
         cin >> command;
+		//make new debt
         if (command == 1) {
             Debt debt1;
             cout << "input name: ";
@@ -96,29 +98,35 @@ int main() {
             }
             if (upper == all) {
                 cout << "all is not a valid name." << endl;
-            } else {
-                cout << "input amount: ";
+            }
+			else {
+                cout << "Input amount: ";
                 cin >> debt1.amount;
                 debtl->push_back(debt1);
                 writeFile();
             }
-        } else if (command == 2) {
+        }
+		//retreve debt
+		else if (command == 2) {
             std::string request;
-            cout << "input name of debter (type all to print whole list): ";
+            cout << "Input name of debter (type all to print whole list): ";
             cin >> request;
             retrieve(request, debtList);
-        } else if (command == 3) {
+        }
+		//delete debt
+		else if (command == 3) {
             std::string request;
-            cout << "input name of debt you want to remove: ";
+            cout << "Input name of debt you want to remove: ";
             cin >> request;
             for (unsigned i = 0; i < debtList.size(); ++i) {
                 if (debtList[i].name.find(request) != std::string::npos) {
-                    cout << "removing " << debtList[i] << endl;
+                    cout << "Removing " << debtList[i] << endl;
                     *debtl->erase(debtl->begin() + i);
                 }
             }
             writeFile();
-        } else
+        }
+		else if (command == 0)
             break;
     }
     return 0;
