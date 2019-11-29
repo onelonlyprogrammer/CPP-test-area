@@ -28,11 +28,3 @@ class Contact {
 			return out;
 		}
 };
-
-string Contact::get(string query) {
-	if (query == "name") {return name;}
-	else if (query == "email") {return email;}
-	else if (query == "address") {return address;}
-	else if (query == "phone") {return phone;}	
-	return "Invalid query: " + query + " not found";
-}
