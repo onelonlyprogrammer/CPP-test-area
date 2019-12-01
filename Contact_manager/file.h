@@ -10,7 +10,7 @@ void writeFile(std::string fileName, std::vector<Contact> list) {
 	std::ofstream file(fileName);
 
 	for (Contact a : list) {
-		file << a << endl;
+		file << a << std::endl;
 	}
 
 	file.close();
