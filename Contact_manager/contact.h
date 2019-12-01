@@ -1,9 +1,9 @@
+#ifndef Included_NameModel_H
+#define Included_NameModel_H
+
 #include <iostream>
 #include <fstream>
 
-using std::cout;
-using std::cin;
-using std::endl;
 using std::string;
 
 class Contact {
@@ -28,3 +28,4 @@ class Contact {
 			return out;
 		}
 };
+#endif
