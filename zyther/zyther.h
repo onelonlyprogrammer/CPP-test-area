@@ -7,38 +7,52 @@ using std::string;
 
 class Zyther {
    public:
-    string strip_one(string str, char todelete);
-    string strip_multi(string str, string todelete);
-    std::vector<string> split_one(string str, char devider);
-    std::vector<string> split_multi(string str, string devider);
+    string stripOne(string str, char toDelete);
+    string stripMulti(string str, string toDelete);
+	bool isIn(string str, const std::string& toFind);
+    std::vector<string> splitOne(string str, char devider);
+    std::vector<string> splitMulti(string str, string devider);
 };
 
-string Zyther::strip_one(string str, char todelete) {
+string Zyther::stripOne(string str, char toDelete) {
     string stripped;
     for (int i = 0; i < str.length(); ++i) {
-        if (str[i] != todelete) {
+        if (str[i] != toDelete) {
             stripped += str[i];
         }
     }
     return stripped;
 }
-
-string Zyther::strip_multi(string str, string todelete) {
+string Zyther::stripMulti(string str, string toDelete) {
     string stripped, temp;
     for (int i = 0; i < str.length(); ++i) {
-        for (int s = 0; s < todelete.length(); ++s) {	
+        for (int s = 0; s < toDelete.length(); ++s) {	
             temp += str[s + i];
         }
-        if (temp != todelete) {
+        if (temp != toDelete) {
 			stripped += str[i];
         }
-		else {str.erase(i, todelete.length() - 1);}
+		else {str.erase(i, toDelete.length() - 1);}
 		temp = "";
     }
 	return stripped;
 }
 
-std::vector<string> Zyther::split_one(string str, char devider) {
+bool Zyther::isIn(string str, const std::string& toFind) {
+    string stripped, temp;
+    for (int i = 0; i < str.length(); ++i) {
+        for (int s = 0; s < toFind.length(); ++s) {	
+            temp += str[s + i];
+        }
+        if (temp == toFind) {
+			return true;
+        }
+        temp = "";
+    }
+	return false;
+}
+
+std::vector<string> Zyther::splitOne(string str, char devider) {
 	std::vector<string> splitVec;
 	string splitted;
 	for (int i = 0; i < str.length(); ++i) {
@@ -54,7 +68,7 @@ std::vector<string> Zyther::split_one(string str, char devider) {
     return splitVec;
 }
 
-std::vector<string> Zyther::split_multi(string str, string devider) {
+std::vector<string> Zyther::splitMulti(string str, string devider) {
     std::vector<string> splitVec;
     string splitted, temp;
     bool first = false;
