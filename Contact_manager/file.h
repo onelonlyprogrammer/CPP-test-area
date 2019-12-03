@@ -16,6 +16,7 @@ void writeFile(std::string fileName, std::vector<Contact> list) {
 	file.close();
 	return;
 }
+//reads file and appends contents to new vector
 std::vector<Contact> readFile(std::string fileName) {
 	std::string line;
 	std::vector<Contact> ret;
