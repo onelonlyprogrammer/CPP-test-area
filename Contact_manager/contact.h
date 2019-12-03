@@ -9,6 +9,8 @@ using std::string;
 class Contact {
 	public:
 		string name, email, address, phone;
+		
+		//default constructor
 		Contact() {
 			name = email = address = phone = "none";
 		}
