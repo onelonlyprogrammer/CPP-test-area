@@ -7,7 +7,6 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-Zyther zyther;
 int command = 0;
 
 class Debt {
@@ -35,7 +34,7 @@ std::vector<Debt>* debtl = &debtList;
 
 //Converts string in proper format to Debt object
 Debt Debt::convertToDebt(std::string str) {
-    std::vector<std::string> tokens = zyther.split_multi(str, ", $");
+    std::vector<std::string> tokens = splitMulti(str, ", $");
 
     Debt debt(tokens[0], atof(tokens[1].c_str()));
     return debt;
