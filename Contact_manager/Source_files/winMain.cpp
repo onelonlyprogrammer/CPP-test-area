@@ -1,3 +1,5 @@
+//Windowed version of Contact Manager using wxWdgets
+
 #include "../Header_files/winMain.h"
 #include "../Header_files/contactHandler.h"
 #include "../../zyther/zyther.h"
@@ -8,7 +10,7 @@ wxBEGIN_EVENT_TABLE(winMain, wxFrame)
 	EVT_BUTTON(10003, winMain::delete_btnClicked)
 wxEND_EVENT_TABLE()
 
-winMain::winMain() : wxFrame(nullptr, wxID_ANY, "tester",  wxPoint(30, 30), wxSize(800, 600)) {
+winMain::winMain() : wxFrame(nullptr, wxID_ANY, "Contact MAnger",  wxPoint(30, 30), wxSize(800, 600)) {
 	make_btn = new wxButton(this,  10001, "Make", wxPoint(10, 10), wxSize(150, 50));
 	find_btn = new wxButton(this,  10002, "Find", wxPoint(10, 70), wxSize(150, 50));
 	delete_btn = new wxButton(this,  10003, "Delete", wxPoint(10, 130), wxSize(150, 50));
