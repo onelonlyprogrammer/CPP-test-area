@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "file.h"
-#include "contact.h"
+#include "../Header_files/file.h"
+#include "../Header_files/contact.h"
 
 using std::cout;
 using std::cin;

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef Included_NameModel_H
 #define Included_NameModel_H
 
@@ -22,8 +24,10 @@ class Contact {
 			phone = new_phone;
 		}
 
-		string get(string query);
-		
+		std::string toString() {
+			return name + ", " + email + ", " + address + ", " + phone;
+		}
+
 		//for printing
 		friend std::ostream& operator<<(std::ostream& out, const Contact& c){
 			out << c.name << ", " << c.email << ", " << c.address << ", " << c.phone;
