@@ -6,7 +6,7 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "g++ Source_files/cMain.cpp Source_files/cApp.cpp `wx-config --cxxflags --libs` -o windowContact",
+            "command": "g++ Source_files/winMain.cpp Source_files/winApp.cpp `wx-config --cxxflags --libs` -o windowContact",
             "group": {
                 "kind": "build",
                 "isDefault": true
