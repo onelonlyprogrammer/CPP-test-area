@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <typeinfo>
@@ -5,16 +7,7 @@
 
 using std::string;
 
-class Zyther {
-   public:
-    string stripOne(string str, char toDelete);
-    string stripMulti(string str, string toDelete);
-	bool isIn(string str, const std::string& toFind);
-    std::vector<string> splitOne(string str, char devider);
-    std::vector<string> splitMulti(string str, string devider);
-};
-
-string Zyther::stripOne(string str, char toDelete) {
+string stripOne(string str, char toDelete) {
     string stripped;
     for (int i = 0; i < str.length(); ++i) {
         if (str[i] != toDelete) {
@@ -23,7 +16,7 @@ string Zyther::stripOne(string str, char toDelete) {
     }
     return stripped;
 }
-string Zyther::stripMulti(string str, string toDelete) {
+string stripMulti(string str, string toDelete) {
     string stripped, temp;
     for (int i = 0; i < str.length(); ++i) {
         for (int s = 0; s < toDelete.length(); ++s) {	
@@ -38,7 +31,7 @@ string Zyther::stripMulti(string str, string toDelete) {
 	return stripped;
 }
 
-bool Zyther::isIn(string str, const std::string& toFind) {
+bool isIn(string str, const std::string& toFind) {
     string stripped, temp;
     for (int i = 0; i < str.length(); ++i) {
         for (int s = 0; s < toFind.length(); ++s) {	
@@ -52,7 +45,7 @@ bool Zyther::isIn(string str, const std::string& toFind) {
 	return false;
 }
 
-std::vector<string> Zyther::splitOne(string str, char devider) {
+std::vector<string> splitOne(string str, char devider) {
 	std::vector<string> splitVec;
 	string splitted;
 	for (int i = 0; i < str.length(); ++i) {
@@ -68,7 +61,7 @@ std::vector<string> Zyther::splitOne(string str, char devider) {
     return splitVec;
 }
 
-std::vector<string> Zyther::splitMulti(string str, string devider) {
+std::vector<string> splitMulti(string str, string devider) {
     std::vector<string> splitVec;
     string splitted, temp;
     bool first = false;
