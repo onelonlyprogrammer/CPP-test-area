@@ -1,3 +1,6 @@
+/*If you're using the gui version make sure
+  this file is not compiled*/
+
 #include <iostream>
 #include <vector>
 #include <string>
